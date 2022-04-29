@@ -1,0 +1,10 @@
+input/
+input/*
+output/
+output/*
+node_modules/
+node_modules/*
+package-lock.json
+db.sql
+.lighthouseci
+.DS_Store
