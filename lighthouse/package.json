@@ -1,7 +1,6 @@
 {
   "name": "node",
   "version": "1.0.0",
-  "description": "",
   "main": "config.js",
   "dependencies": {
     "ansi-colors": "^4.1.1",
@@ -209,10 +208,7 @@
     "ws": "^7.5.7"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
   "author": "",
+  "private": true,
   "license": "ISC"
 }
