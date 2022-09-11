@@ -1,4 +1,4 @@
-const variables = require('./variables.js');
+const constants = require('./constants.js');
 
 module.exports = {
   ci: {
@@ -8,17 +8,17 @@ module.exports = {
         'https://www.amazon.nl',
         'https://www.google.be'
             ],
-      puppeteerScript: "./puppeteer.js",
+      puppeteerScript: "./puppeteer.desktop.js",
       puppeteerLaunchOptions: { 
         headless: false, 
-        "args": ["--user-agent=" + variables.user_agent]
+        "args": ["--user-agent=" + constants.userAgent]
          },
       settings:  {
         output: 'html',
         onlyCategories: ['performance'],
         /*skipAudits: ['modern-image-formats'],*/
         formFactor: 'mobile',
-        screenEmulation: { mobile: true }
+        screenEmulation: { mobile: false }
       },
       numberOfRuns: 1,
     },

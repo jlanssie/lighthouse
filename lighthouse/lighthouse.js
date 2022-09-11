@@ -3,10 +3,8 @@ const puppeteer = require('puppeteer');
 const {URL} = require('url');
 const fs = require('fs');
 const variables = require('./variables.js');
-const functions = require('./functions.js');
+const constants = require('./constants.js');
 const config = require('./config.js');
-
-functions.createDirectory(variables.output_directory);
 
 (async() => {
   const browser = await puppeteer.launch({headless: true});
@@ -33,9 +31,9 @@ functions.createDirectory(variables.output_directory);
           let name = i
           name = new URL (pages[i]).pathname.replaceAll(/\?|\!|\=|\#|\//gi,"-").replace('-','')
           if (name == '') { name = 'homepage'}
-          let output_html = variables.output_directory + variables.file_path_separator + name + '-results.html'
+          let output_html = name + '-results.html'
           fs.writeFileSync(output_html, report_html);
-          let output_json = variables.output_directory + variables.file_path_separator + name + '-results.json'
+          let output_json = name + '-results.json'
           const report_json = runnerResult.lhr
           fs.writeFile(output_json, JSON.stringify(runnerResult.lhr, null, 2), err => {
               if (err) {

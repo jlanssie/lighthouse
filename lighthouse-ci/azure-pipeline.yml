@@ -1,0 +1,42 @@
+trigger: none
+pr: none
+
+schedules:
+  - cron: "0 0 * * Sun"
+    displayName: Weekly schedule
+    branches:
+      include:
+        - main
+    always: true
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  workingDir: 'lighthouse-ci'
+  npm_config_cache: $(Pipeline.Workspace)/$(workingDir)/.npm
+
+jobs:
+- job: 'run_lighthouse_reports'
+  displayName: 'Run Lighthouse Reports'
+  steps:
+  - checkout: self
+    persistCredentials: true
+
+  - task: lighthouse-ci@1
+    condition: always()
+    continueOnError: true
+    inputs:
+      parameters: ‘--logLevel=verbose’
+      command: 'autorun'
+      configFilePath: 'lighthouse/pipeline/desktop.js'
+    displayName: 'Desktop report'
+
+  - task: lighthouse-ci@1
+    condition: always()
+    continueOnError: true
+    inputs:
+      parameters: ‘--logLevel=verbose’
+      command: 'autorun'
+      configFilePath: 'lighthouse/pipeline/mobile.js'
+    displayName: 'Mobile report'

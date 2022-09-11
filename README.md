@@ -1,2 +1,5 @@
-# lighthouse
-Lighthouse.js executes batch performance tests with Lighthouse on a Chromium browser launched by Puppeteer. 
+# Lighthouse
+
+````
+lighthouse "$url" --only-categories=performance --chrome-flags="--headless" --form-factor=mobile --screenEmulation.mobile --output=json --output-path="$output_directory""$filename"-mobile-results-.json;
+```
